@@ -1,13 +1,22 @@
 services:
   blazorcrud_proyecto01:
-    image: ${DOCKER_REGISTRY-}blazorcrudproyecto01
     build:
-      context: .
-      dockerfile: BlazorCrud_Proyecto01/Dockerfile
+      context: ./BlazorCrud_Proyecto01
+      dockerfile: Dockerfile
     ports:
-        - "8003:8080"
+      - "8003:80"
+    depends_on:
+      - sqlserver
     environment:
-        - aspnetcore_environment=Development
-        - connectionStrings__DefaultConnection=Server=host.docker.internal;Database=BlazorCrudDB;User=sa; Password=MiClaveSegura!123;TrustServerCertificate=True;
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=BlazorDB;User=sa;Password=Roger1974.;TrustServerCertificate=true;MultipleActiveResultSets=true
 
-
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: ContenedorLibros.Db
+    volumes:
+      - ./.containers/database:/var/opt/mssql/data
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Roger1974.
