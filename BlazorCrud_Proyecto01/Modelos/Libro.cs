@@ -23,4 +23,6 @@ public class Libro
     public int Precio { get; set; }
 
     public DateTime FechaCreacion { get; set; }
+
+    public int IdTipoLibro { get; set; }
 }
