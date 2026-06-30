@@ -1,4 +1,4 @@
-# BlazorCrud_Proyecto01<
+# BlazorCrud_Proyecto01
 #ENTREGA   -  ACTIVIDAD SUMATIVA
 
 Creación de aplicación contenerizada en Docker 
